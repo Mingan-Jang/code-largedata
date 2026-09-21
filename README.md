@@ -29,4 +29,4 @@ Open `http://localhost:8080`.
 
 ## Database scripts
 
-See [sql/README.md](sql/README.md). For an existing old schema, run `000_migrate_legacy_column_names.sql`, then run the schema and regeneration scripts in order.
+See [sql/README.md](sql/README.md). Run the schema and regeneration scripts in order against the new `public.detail_test` table.

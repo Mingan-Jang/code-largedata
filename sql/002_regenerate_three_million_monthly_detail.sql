@@ -1,15 +1,15 @@
--- WARNING: this script deletes all existing largedata.detail rows.
+-- WARNING: this script deletes all existing public.detail_test rows.
 -- It recreates exactly 3,000,000 detail rows from 2026-01-01 through 2026-12-31.
 -- Each calendar month has 20 to 36 actual Model Families.
 
-TRUNCATE TABLE largedata.detail;
+TRUNCATE TABLE public.detail_test;
 
 WITH generated AS (
     SELECT id,
            DATE '2026-01-01' + ((id - 1) % 365)::INTEGER AS report_date
     FROM generate_series(1, 3000000) AS series(id)
 )
-INSERT INTO largedata.detail (
+INSERT INTO public.detail_test (
     id, product_group, component_code, qty, amount, created_at, report_date, region_code, country_code,
     facility_code, customer_code, order_no, lot_no, serial_no, status, priority, sales_channel,
     currency_code, unit_price, discount_amount, tax_amount, net_amount, shipped_qty,
@@ -50,4 +50,4 @@ SELECT id,
        report_date + ((id % 90000) * INTERVAL '1 second')
 FROM generated;
 
-ANALYZE largedata.detail;
+ANALYZE public.detail_test;

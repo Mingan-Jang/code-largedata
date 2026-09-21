@@ -1,6 +1,4 @@
-CREATE SCHEMA IF NOT EXISTS largedata;
-
-CREATE TABLE IF NOT EXISTS largedata.detail (
+CREATE TABLE IF NOT EXISTS public.detail_test (
     id BIGINT PRIMARY KEY,
     product_group VARCHAR(30) NOT NULL,
     component_code VARCHAR(30) NOT NULL,
@@ -29,8 +27,8 @@ CREATE TABLE IF NOT EXISTS largedata.detail (
     updated_at TIMESTAMP
 );
 
-CREATE INDEX IF NOT EXISTS detail_product_group_component_idx
-    ON largedata.detail (product_group, component_code);
+CREATE INDEX IF NOT EXISTS detail_test_product_group_component_idx
+    ON public.detail_test (product_group, component_code);
 
-CREATE INDEX IF NOT EXISTS detail_report_date_product_group_created_idx
-    ON largedata.detail (report_date DESC, product_group, created_at DESC);
+CREATE INDEX IF NOT EXISTS detail_test_report_date_product_group_created_idx
+    ON public.detail_test (report_date DESC, product_group, created_at DESC);

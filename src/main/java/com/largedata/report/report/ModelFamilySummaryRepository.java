@@ -19,7 +19,7 @@ public class ModelFamilySummaryRepository {
                    COUNT(*) AS record_count,
                    SUM(qty) AS total_qty,
                    SUM(amount) AS total_amount
-            FROM largedata.detail
+            FROM public.detail_test
             GROUP BY product_group, component_code
             ORDER BY product_group, component_code
             """;
@@ -30,7 +30,7 @@ public class ModelFamilySummaryRepository {
                    COUNT(*) AS record_count,
                    SUM(qty) AS total_qty,
                    SUM(amount) AS total_amount
-            FROM largedata.detail
+            FROM public.detail_test
             WHERE report_date >= ? AND report_date < ?
             GROUP BY product_group, component_code
             ORDER BY product_group, component_code
@@ -40,14 +40,14 @@ public class ModelFamilySummaryRepository {
             SELECT date_trunc('month', report_date)::date AS report_month,
                    COUNT(DISTINCT product_group) AS product_group_count,
                    COUNT(*) AS record_count
-            FROM largedata.detail
+            FROM public.detail_test
             GROUP BY date_trunc('month', report_date)::date
             ORDER BY report_month
             """;
 
     private static final String MONTHLY_FAMILIES_SQL = """
             SELECT DISTINCT product_group
-            FROM largedata.detail
+            FROM public.detail_test
             WHERE report_date >= ? AND report_date < ?
             ORDER BY product_group
             """;
@@ -57,7 +57,7 @@ public class ModelFamilySummaryRepository {
                    region_code, country_code, facility_code, customer_code, order_no, lot_no,
                    serial_no, status, priority, sales_channel, currency_code, unit_price,
                    discount_amount, tax_amount, net_amount, shipped_qty, pending_qty, is_active
-            FROM largedata.detail
+            FROM public.detail_test
             WHERE report_date >= ? AND report_date < ? AND product_group = ?
             ORDER BY report_date DESC, created_at DESC, id
             """;
