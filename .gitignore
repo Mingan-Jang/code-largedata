@@ -1,0 +1,33 @@
+# Maven / Java build output
+target/
+*.class
+*.jar
+*.war
+*.log
+
+# Generated download packages and staging files
+download/
+*.zip
+
+# IDE metadata
+.idea/
+*.iml
+.vscode/
+.project
+.classpath
+.settings/
+
+# Local operating-system files
+.DS_Store
+Thumbs.db
+
+# Excel temporary lock files and large local assets
+~$*.xlsx
+src/main/resources/~$*.xlsx
+src/main/resources/resources.7z
+src/main/resources/model-family/
+
+# Local-only configuration and secrets
+.env
+application-local.yml
+src/main/resources/application-local.yml

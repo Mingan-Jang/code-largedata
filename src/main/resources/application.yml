@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: largedata-report-api
+  datasource:
+    url: ${LARGEDATA_DB_URL:jdbc:postgresql://localhost:5433/largedata}
+    username: ${LARGEDATA_DB_USERNAME:postgres}
+    password: ${LARGEDATA_DB_PASSWORD:admin}
+
+server:
+  port: ${SERVER_PORT:8080}
+
+app:
+  download-directory: ${LARGEDATA_DOWNLOAD_DIRECTORY:download}

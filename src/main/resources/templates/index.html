@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-Hant" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Large Data 月報下載</title>
+    <style>
+        body { margin: 0; font-family: "Microsoft JhengHei", Arial, sans-serif; background: #f4f7fb; color: #152235; }
+        main { max-width: 760px; margin: 72px auto; padding: 38px; background: #fff; border-radius: 16px; box-shadow: 0 12px 34px #172b4d1c; }
+        h1 { margin: 0 0 10px; } p { color: #536274; line-height: 1.65; }
+        label { display: block; margin: 28px 0 8px; font-weight: 700; }
+        select { width: 100%; padding: 12px; border: 1px solid #bac5d1; border-radius: 8px; font-size: 16px; }
+        .meta { margin-top: 10px; color: #66758a; font-size: 14px; }
+        .actions { display: flex; gap: 12px; margin-top: 26px; flex-wrap: wrap; }
+        button { border: 0; border-radius: 8px; padding: 12px 18px; background: #1263c6; color: white; cursor: pointer; font-size: 16px; }
+        button.secondary { background: #425a75; }
+    </style>
+</head>
+<body>
+<main>
+    <h1>Product Group 月報下載</h1>
+    <p>選擇月份後，系統會即時生成一份下載套件：內含 Power Query XLSX 與該月實際存在 Product Group 的 CSV 資料夾。</p>
+    <form id="downloadForm" method="get">
+        <label for="month">報表月份</label>
+        <select id="month" name="month" required>
+            <option th:each="month : ${months}"
+                    th:value="${month.value}"
+                    th:text="${month.value + ' — ' + month.productGroupCount + ' 個 Product Group，' + month.recordCount + ' 筆資料'}">
+            </option>
+        </select>
+        <div class="actions">
+            <button type="submit" formaction="/downloads/package.zip">下載 XLSX 與 CSV 資料套件 ZIP</button>
+        </div>
+    </form>
+    <p class="meta"><strong>重要：</strong>解壓縮後，請維持 <code>LargeData_Template.xlsx</code> 與 <code>model-family</code> 資料夾的相對位置；移動任一位置會使 Power Query 無法讀取 CSV。</p>
+</main>
+</body>
+</html>
